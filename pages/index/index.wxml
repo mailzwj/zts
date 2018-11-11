@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<view class="container i-say">
+    <view class="user-info">
+        <view class="avatar">
+            <open-data type="userAvatarUrl" class="user-head"></open-data>
+        </view>
+        <view class="page-bg"></view>
+    </view>
+    <view class="page-main">
+        <form class="card-form" bindsubmit="formSubmit">
+            <view class="card-title">
+                <input name="card-theme" class="card-input" placeholder="请填写主题" bindinput="onThemeInput" maxlength="15" />
+            </view>
+            <scroll-view class="card-content" scroll-y>
+                <textarea class="card-textarea" auto-height placeholder="请填写内容" placeholder-class="ta-pla" bindinput="onContentInput" value="{{contentText}}" wx:if="{{contentEditable}}" maxlength="115" />
+                <rich-text class="content-prev" nodes="{{showContent}}" wx:else></rich-text>
+            </scroll-view>
+            <view class="card-row">
+                <button type="primary" form-type="submit">预览</button>
+            </view>
+        </form>
+    </view>
+    <view class="preview" animation="{{prevAnim}}">
+        <view class="prev-main">
+            <canvas canvas-id="cardMaker" class="card-maker">
+                <cover-view class="prev-closer" bindtap="hidePrev">
+                    <cover-image src="../../imgs/closer.png"></cover-image>
+                </cover-view>
+                <cover-view class="save-view">
+                    <button class="save-to-album" type="primary" bindtap="saveToAlbum" disabled="{{!activeSaveBtn}}">保存到相册</button>
+                </cover-view>
+            </canvas>
+        </view>
+    </view>
+</view>
